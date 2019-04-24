@@ -1,0 +1,52 @@
+# http://www.appveyor.com/docs/appveyor-yml
+
+# Test against these versions of Node.js.
+environment:
+  # Visual Studio Version
+  MSVS_VERSION: 2015
+  # Test against these versions of Node.js and io.js
+  matrix:
+    - nodejs_version: "6"
+    - nodejs_version: "8"
+    - nodejs_version: "10"
+    - nodejs_version: "11"
+
+platform:
+  - x86
+  - x64
+
+# Install scripts. (runs after repo cloning)
+install:
+  - ps: Update-NodeJsInstallation (Get-NodeJsLatestBuild $env:nodejs_version) $env:platform
+  - npm install -g npm@3
+  - set PATH=%APPDATA%\npm;%PATH%
+  # Typical npm stuff.
+  # - npm install --save-dev electron
+  # - npm install --save-dev electron-rebuild
+  # Output useful info for debugging.
+  # - .\node_modules\.bin\electron.cmd -v
+  # Install it normally to get all requirements
+  - npm install --msvs_version=%MSVS_VERSION%
+  # Rebuild package for `electron`
+  # - .\node_modules\.bin\electron-rebuild.cmd --arch=%PLATFORM%
+
+# Post-install test scripts.
+test_script:
+  # Output useful info for debugging.
+  - node --version
+  - npm --version
+  # run tests
+  # - npm test
+  # Show directory structure
+  # - dir
+
+# Don't actually build.
+build: off
+
+# Save the binary files for faster deployment
+artifacts:
+  - path: build
+    name: weak_binary
+
+# Set build version format here instead of in the admin panel.
+version: "{build}"
