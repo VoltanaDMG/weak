@@ -8,7 +8,7 @@ describe('weak()', function () {
   describe('Buffer', function () {
     it('should invoke callback before destroying Buffer', function(done) {
       let called = false;
-      weak(Buffer('test'), function (buf) {
+      weak(Buffer.from('test'), function (buf) {
         called = true;
       });
 
