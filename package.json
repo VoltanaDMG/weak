@@ -17,7 +17,7 @@
         "module_name" : "weakref",
         "module_path" : "./lib/binding/",
         "remote-path" : "./{name}/v{version}/{arch}/",
-        "host"        : "",
+        "host"        : "https://localhost/registry/weak/",
         "napi_versions": [1,3]
   },
   "repository": {
