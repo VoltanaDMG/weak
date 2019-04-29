@@ -1,6 +1,11 @@
 {
+  'target_defaults': {
+    "defines": [
+      "NAPI_VERSION=<(napi_build_version)",
+    ],
+  },
   'targets': [{
-    'target_name': 'weakref',
+    'target_name': '<(module_name)',
     'sources': [ 'src/weakref.cc' ],
     'include_dirs': ["<!@(node -p \"require('node-addon-api').include\")",
                      "<!@(node -p \"require('setimmediate-napi').include\")"],

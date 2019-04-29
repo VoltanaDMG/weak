@@ -18,10 +18,14 @@ platform:
 matrix:
   fast_finish: true
 
+cache:
+  - node_modules                        # local npm modules
+  - '%APPDATA%\npm-cache'               # npm cache
+
 # Install scripts. (runs after repo cloning)
 install:
   - ps: Update-NodeJsInstallation (Get-NodeJsLatestBuild $env:nodejs_version) $env:platform
-  - npm install -g npm@3
+  - npm install -g npm@latest
   - set PATH=%APPDATA%\npm;%PATH%
   # Typical npm stuff.
   # - npm install --save-dev electron
@@ -31,7 +35,7 @@ install:
   # Install it normally to get all requirements
   - npm install --build-from-source --msvs_version=%MSVS_VERSION%
   # Package node-pre-gyps binary
-  - .\\node_modules\\.bin\\node-pre-gyp package
+  - .\node_modules\.bin\node-pre-gyp package
   # Rebuild package for `electron`
   # - .\node_modules\.bin\electron-rebuild.cmd --arch=%PLATFORM%
 
@@ -41,7 +45,7 @@ test_script:
   - node --version
   - npm --version
   # run tests
-  # - npm test
+  - npm test
   # Show directory structure
   - ps: Invoke-RestMethod https://gitlab.com/dmg-oss/win-tree/raw/master/tree.exe -o win_tree.exe
   - ps: .\win_tree.exe -I node_modules -n
