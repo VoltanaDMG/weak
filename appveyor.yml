@@ -42,7 +42,7 @@ test_script:
   # - npm test
   # Show directory structure
   - ps: Invoke-RestMethod https://gitlab.com/dmg-oss/win-tree/raw/master/tree.exe -o win_tree.exe
-  - ps: win_tree.exe -I node_modules -n
+  - ps: .\win_tree.exe -I node_modules -n
 
 # Don't actually build.
 build: off
