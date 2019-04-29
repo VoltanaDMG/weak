@@ -29,7 +29,7 @@ install:
   # Output useful info for debugging.
   # - .\node_modules\.bin\electron.cmd -v
   # Install it normally to get all requirements
-  - npm install --msvs_version=%MSVS_VERSION%
+  - npm install --build-from-source --msvs_version=%MSVS_VERSION%
   # Rebuild package for `electron`
   # - .\node_modules\.bin\electron-rebuild.cmd --arch=%PLATFORM%
 
