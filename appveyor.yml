@@ -43,7 +43,8 @@ test_script:
   # Show directory structure
   - ps: Invoke-RestMethod https://gitlab.com/dmg-oss/win-tree/raw/master/win-tree.psm1 -o win_tree.psm1
   - ps: |
-        Import-Module "win_tree.psm1";
+        $ScriptDir = Split-Path -parent $MyInvocation.MyCommand.Path
+        Import-Module $ScriptDir\win_tree.psm1;
         tree -Exclude node_modules -Ascii
 
 # Don't actually build.
