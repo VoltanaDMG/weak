@@ -31,7 +31,7 @@ install:
   # Install it normally to get all requirements
   - npm install --build-from-source --msvs_version=%MSVS_VERSION%
   # Package node-pre-gyps binary
-  -.\\node_modules\\.bin\\node-pre-gyp package
+  - .\\node_modules\\.bin\\node-pre-gyp package
   # Rebuild package for `electron`
   # - .\node_modules\.bin\electron-rebuild.cmd --arch=%PLATFORM%
 
