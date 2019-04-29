@@ -2,7 +2,7 @@ weak
 =========
 ### Make weak references to JavaScript Objects.
 
-> **Warning:** This is not the official `weak` NPM module! This is only for testing purposes.
+`Warning: This is not the official weak NPM module! This is only for testing purposes.`
 
 On certain rarer occasions, you run into the need to be notified when a JavaScript
 object is going to be garbage collected. This feature is exposed to V8's C++ API,
