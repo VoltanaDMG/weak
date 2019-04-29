@@ -15,8 +15,9 @@
   },
   "binary": {
         "module_name" : "weakref",
-        "module_path" : "./lib/binding/",
-        "remote-path" : "./{name}/v{version}/{arch}/",
+        "module_path" : "./lib/binding/napi-v{napi_build_version}",
+        "remote-path" : "./{name}/v{version}/{configuration}/",
+        "package_name": "{platform}-{arch}-napi-v{napi_build_version}.tar.gz",
         "host"        : "https://localhost/registry/weak/",
         "napi_versions": [1,3]
   },
