@@ -1,5 +1,8 @@
 weak
 =========
+
+[![Build Status](https://travis-ci.com/oss-dmg/weak.svg?branch=master)](https://travis-ci.com/oss-dmg/weak)
+
 ### Make weak references to JavaScript Objects.
 
 `Warning: This is not the official weak NPM module! This is only for testing purposes.`
