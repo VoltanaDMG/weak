@@ -9,8 +9,11 @@ addons:
     packages:
       - g++-4.8
 
+# First we set up the the type of project, in this case node_js
 language: node_js
 
+# We also need to specify the node.js versions we want to build from
+# and we want to also create binaries for the different node versions.
 node_js:
   - "6"
   - "8"
@@ -21,9 +24,16 @@ node_js:
 before_install:
   # Get commit message to check if we should publish binary
   - COMMIT_MESSAGE=$(git show -s --format=%B $TRAVIS_COMMIT | tr -d '\n')
+  # Put local npm modules .bin on PATH
   - export PATH=./node_modules/.bin/:$PATH
+  # Install node-gyp and node-pre-gyp so it is available for packaging and publishing
+  - npm install node-gyp -g
+  - npm install node-pre-gyp
   # Figure out if we should publish
   - PUBLISH_BINARY=false
+  # Short print-outs
+  - echo $PUBLISH_BINARY
+  - echo $TRAVIS_BRANCH
   # If we are building a tag then we need to publish a new binary package
   - if [[ $TRAVIS_BRANCH == `git describe --tags --always HEAD` ]]; then PUBLISH_BINARY=true; fi;
   # or if we put the string [publish binary] in the commit message
