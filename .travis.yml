@@ -1,13 +1,13 @@
 sudo: false
 
 env:
-  - CXX=g++-4.8
+  - CXX=g++-4.9
 addons:
   apt:
     sources:
       - ubuntu-toolchain-r-test
     packages:
-      - g++-4.8
+      - g++-4.9
 
 # First we set up the the type of project, in this case node_js
 language: node_js
@@ -18,7 +18,7 @@ node_js:
   - "6"
   - "8"
   - "9"
-  # - "10"
+  - "10"
   # - "11"
 
 before_install:
