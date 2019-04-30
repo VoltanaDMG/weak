@@ -1,4 +1,5 @@
 # http://www.appveyor.com/docs/appveyor-yml
+# Needs a whole rework to concurrent with Travis CI!
 
 # Test against these versions of Node.js.
 environment:
