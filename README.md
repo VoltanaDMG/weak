@@ -1,7 +1,8 @@
 weak
 =========
 
-[![Build Status](https://travis-ci.com/oss-dmg/weak.svg?branch=master)](https://travis-ci.com/oss-dmg/weak)
+------------ | ------------
+**Build** | [![Build Status](https://travis-ci.com/oss-dmg/weak.svg?branch=master)](https://travis-ci.com/oss-dmg/weak)
 
 ### Make weak references to JavaScript Objects.
 
