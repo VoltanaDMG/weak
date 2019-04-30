@@ -1,9 +1,14 @@
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) No one - this is OSS. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
 'use strict';
 const EventEmitter = require('events');
 const binary = require('node-pre-gyp');
 const path = require('path')
 const binding_path = binary.find(path.resolve(path.join(__dirname,'./package.json')));
 const { WeakTag, ObjectInfo } = require(binding_path);
+
 Object.setPrototypeOf(ObjectInfo, EventEmitter);
 Object.setPrototypeOf(ObjectInfo.prototype, EventEmitter.prototype);
 
