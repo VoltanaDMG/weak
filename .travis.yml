@@ -18,7 +18,7 @@ node_js:
   - "11"
 
 install:
-  - npm install -g npm@latest
+  - npm install -g npm@5.10.0
   - npm install --build-from-source
 
 script:
