@@ -27,7 +27,7 @@
   },
   "dependencies": {
     "bindings": "^1.5.0",
-    "node-addon-api": "git@github.com:addaleax/node-api.git#add-napi_remove_wrap"
+    "node-addon-api": "git@github.com:addaleax/node-api.git#add-napi_remove_wrap",
     "node-pre-gyp": "^0.13.0",
     "setimmediate-napi": "^1.0.3"
   },
