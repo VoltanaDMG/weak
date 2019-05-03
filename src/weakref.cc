@@ -11,7 +11,7 @@ namespace {
 
 class ObjectInfo : public ObjectWrap<ObjectInfo> {
  public:
-  ObjectInfo(const CallbackInfo& args) : ObjectWrap(args) {
+  ObjectInfo(const CallbackInfo& args) : ObjectWrap<ObjectInfo>(args) {
     // args[0] != Object
     // args[1] != Function
     // Both needs to be true
@@ -35,8 +35,8 @@ class ObjectInfo : public ObjectWrap<ObjectInfo> {
   void OnFree() {
     SetImmediate(Env(), [this]() {
       callback_.MakeCallback(Value(), {});
-      //callback_.Reset();
-      //Reset();
+      callback_.Reset();
+      Reset();
     });
   }
 
@@ -56,7 +56,7 @@ class ObjectInfo : public ObjectWrap<ObjectInfo> {
 
 class WeakTag : public ObjectWrap<WeakTag> {
  public:
-  WeakTag(const CallbackInfo& args) : ObjectWrap(args) {
+  WeakTag(const CallbackInfo& args) : ObjectWrap<WeakTag>(args) {
     if (args[0].IsObject())
       info_ = ObjectInfo::Unwrap(args[0].As<Object>());
     if (info_ == nullptr)
