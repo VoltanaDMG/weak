@@ -64,8 +64,8 @@ class WeakTag : public ObjectWrap<WeakTag> {
   }
 
   ~WeakTag() {
-    if (info_ != nullptr)
-      info_->OnFree();
+    /*if (info_ != nullptr)
+      info_->OnFree();*/
   }
 
   static Function GetClass(Napi::Env env) {
