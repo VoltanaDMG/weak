@@ -62,8 +62,6 @@ install:
   - npm install -g npm@latest
   # Ensure source install works and compiles correctly
   - npm install --build-from-source
-  # Debugging :-)
-  - ulimit -c unlimited
   # Run tests
   - npm test
 
