@@ -1,6 +1,6 @@
 'use strict';
 const assert = require('assert');
-const weak = require('../');
+const weak = require('./weak.js');
 
 function checkFunction(prop) {
   it(`should have a function "${prop}"`, function () {
