@@ -5,9 +5,6 @@
 #include <napi.h>
 #include <setimmediate.h>
 
-#include <iostream>
-#include <string>
-
 using namespace Napi;
 
 namespace {
@@ -15,18 +12,24 @@ namespace {
 class ObjectInfo : public ObjectWrap<ObjectInfo> {
  public:
   ObjectInfo(const CallbackInfo& args) : ObjectWrap(args) {
+    // args[0] != Object
+    // args[1] != Function
+    // Both needs to be true
     if (!args[0].IsObject() && !args[0].IsFunction())
       throw Error::New(Env(), "target should be object");
+    // args[0] != Object
+    // => args[1] == Function
+    if (!args[0].IsObject())
+      throw Error::New(Env(), "target should be object");
+    // args[1] != Function
+    // => args[0] == Object
     if (!args[1].IsFunction())
       throw Error::New(Env(), "callback should be function");
+    // args[0] == Object
+    // args[1] == Function
     Ref();
-    try {
-      target_.Reset(args[0].As<Object>(), 0);
-      callback_.Reset(args[1].As<Function>(), 1);
-    } catch (Error& e) {
-      std::string errmsg( e.what() );
-      std::cerr << " Caught C++ / Javascript exception: " + errmsg;
-    }
+    target_.Reset(args[0].As<Object>(), 0);
+    callback_.Reset(args[1].As<Function>(), 1);
   }
 
   void OnFree() {
