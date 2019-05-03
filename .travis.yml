@@ -1,7 +1,29 @@
+
+# First we set up the the type of project, in this case node_js
+language: c++
 sudo: false
 
 env:
   - CXX=g++-4.9
+  - NVS_VERSION=1.5.2
+  
+  # We also need to specify the node.js versions we want to build from
+  # and we want to also create binaries for the different node versions.
+  matrix:
+    - NODEJS_VERSION=node/4
+    - NODEJS_VERSION=node/6
+    - NODEJS_VERSION=node/8
+    - NODEJS_VERSION=node/9
+    - NODEJS_VERSION=node/10
+    - NODEJS_VERSION=node/11
+
+matrix:
+  fast_finish: true
+
+cache:
+  directories:
+    - node_modules
+    - $HOME/.npm
 addons:
   apt:
     sources:
@@ -9,24 +31,18 @@ addons:
     packages:
       - g++-4.9
 
-# First we set up the the type of project, in this case node_js
-language: node_js
-
-# We also need to specify the node.js versions we want to build from
-# and we want to also create binaries for the different node versions.
-node_js:
-  - "6"
-  - "8"
-  - "9"
-  - "10"
-  - "11"
-  - "12"
-
 before_install:
+  # Install NVS.
+  - git clone --branch v$NVS_VERSION --depth 1 https://github.com/jasongin/nvs ~/.nvs
+  - . ~/.nvs/nvs.sh
+  - nvs --version
   # Get commit message to check if we should publish binary
   - COMMIT_MESSAGE=$(git show -s --format=%B $TRAVIS_COMMIT | tr -d '\n')
   # Put local npm modules .bin on PATH
   - export PATH=./node_modules/.bin/:$PATH
+  # node.js
+  - nvs add $NODEJS_VERSION
+  - nvs use $NODEJS_VERSION
   # Install node-gyp and node-pre-gyp so it is available for packaging and publishing
   - npm install node-gyp -g
   - npm install node-pre-gyp
