@@ -28,7 +28,7 @@ describe('create()', function() {
       function() {},
       () => {},
       [],
-      Buffer(''),
+      Buffer.from(''),
       new ArrayBuffer(10),
       new Int32Array(new ArrayBuffer(12)),
       Promise.resolve(),
