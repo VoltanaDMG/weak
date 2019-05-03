@@ -8,7 +8,7 @@
     "Nathan Rajlich <nathan@tootallnate.net>"
   ],
   "version": "1.0.3",
-  "main": "weak.js",
+  "main": "index.js",
   "scripts": {
     "install": "node-pre-gyp install --fallback-to-build",
     "test": "nyc mocha -gc"
