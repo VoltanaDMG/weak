@@ -10,7 +10,7 @@ env:
   # We also need to specify the node.js versions we want to build from
   # and we want to also create binaries for the different node versions.
   matrix:
-    - NODEJS_VERSION=node/4
+    # - NODEJS_VERSION=node/4
     - NODEJS_VERSION=node/6
     - NODEJS_VERSION=node/8
     - NODEJS_VERSION=node/9
