@@ -1,6 +1,6 @@
 'use strict';
 const assert = require('assert');
-const weak = require('../');
+const weak = require('./weak.js');
 
 describe('weak()', function () {
   afterEach(gc);
