@@ -1,11 +1,12 @@
-
-# First we set up the the type of project, in this case node_js
-language: c++
 sudo: false
 
+# First we set up the the type of project, in this case node_js
+language: node_js
+
 env:
-  - CXX=g++-4.9
-  - NVS_VERSION=1.5.2
+  global:
+    - CXX=g++-4.9
+    - NVS_VERSION=1.5.2
   
   # We also need to specify the node.js versions we want to build from
   # and we want to also create binaries for the different node versions.
