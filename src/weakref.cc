@@ -35,8 +35,8 @@ class ObjectInfo : public ObjectWrap<ObjectInfo> {
   void OnFree() {
     SetImmediate(Env(), [this]() {
       callback_.MakeCallback(Value(), {});
-      callback_.Reset();
-      Reset();
+      //callback_.Reset();
+      //Reset();
     });
   }
 
@@ -64,8 +64,8 @@ class WeakTag : public ObjectWrap<WeakTag> {
   }
 
   ~WeakTag() {
-    /*if (info_ != nullptr)
-      info_->OnFree();*/
+    if (info_ != nullptr)
+      info_->OnFree();
   }
 
   static Function GetClass(Napi::Env env) {
