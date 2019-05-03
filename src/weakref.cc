@@ -5,6 +5,9 @@
 #include <napi.h>
 #include <setimmediate.h>
 
+#include <iostream>
+#include <string>
+
 using namespace Napi;
 
 namespace {
@@ -17,15 +20,20 @@ class ObjectInfo : public ObjectWrap<ObjectInfo> {
     if (!args[1].IsFunction())
       throw Error::New(Env(), "callback should be function");
     Ref();
-    target_.Reset(args[0].As<Object>(), 0);
-    callback_.Reset(args[1].As<Function>(), 1);
+    try {
+      target_.Reset(args[0].As<Object>(), 0);
+      callback_.Reset(args[1].As<Function>(), 1);
+    } catch (Error& e) {
+      std::string errmsg( e.what() );
+      std::cerr << " Caught C++ / Javascript exception: " + errmsg;
+    }
   }
 
   void OnFree() {
     SetImmediate(Env(), [this]() {
       callback_.MakeCallback(Value(), {});
       callback_.Reset();
-      //Reset();
+      Reset();
     });
   }
 
